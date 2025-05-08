@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: order_db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: order_api
+    working_dir: /app
+    command: npm start 
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      DB_HOST: db
+    ports:
+      - "${PORT}:${PORT}" 
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+
+  client: 
+    build: ./client
+    container_name: order_client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run start
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
