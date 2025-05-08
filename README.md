@@ -20,6 +20,7 @@ DB_NAME=api_orders_db
 DB_USER=postgres
 DB_PASSWORD=api_orders
 PORT=4444
+```
 
 1.Build and start containers:
 docker compose up --build 
