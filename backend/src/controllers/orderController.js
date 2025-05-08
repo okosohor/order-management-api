@@ -63,7 +63,7 @@ module.exports = {
   
       const orders = await Order.findAll({
         where: { userId },
-        include: [{ model: Product }], // додаємо деталі продукту
+        include: [{ model: Product }],
         order: [['createdAt', 'DESC']]
       });
   

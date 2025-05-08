@@ -6,7 +6,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // Користувач має багато замовлень
       User.hasMany(models.Order, { foreignKey: 'userId' });
     }
   }
