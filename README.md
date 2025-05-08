@@ -23,13 +23,19 @@ PORT=4444
 ```
 
 1.Build and start containers:
-```docker compose up --build ```
+```build
+docker compose up --build 
+```
 
 2.Run database migrations (creates tables):
-```docker compose exec backend npx sequelize-cli db:migrate```
+```megrate
+docker compose exec backend npx sequelize-cli db:migrate
+```
 
 3.Seed test data:
-```docker compose exec backend npx sequelize-cli db:seed:all```
+```seed
+docker compose exec backend npx sequelize-cli db:seed:all
+```
 
 Your API will be running at:
 ```http://localhost:4444```
